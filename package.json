@@ -15,25 +15,34 @@
   "contributors": [],
   "dependencies": {},
   "engines": {
-    "node": "*"
+    "node": ">=12.17.0"
   },
   "_id": "ep_whiiteboard@0.0.1",
   "readme": "ERROR: No README.md file found!",
   "dist": {
     "shasum": "927231aee0f19afa7a80fbfff8348401f15b0595"
   },
-  "_from": "ep_draw"
+  "_from": "ep_draw",
+  "peerDependencies": {
+    "ep_etherpad-lite": ">=1.8.7"
+  },
+  "devDependencies": {
+    "eslint": "^8.8.0",
+    "eslint-config-etherpad": "^2.0.7",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-mocha": "^10.0.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-you-dont-need-lodash-underscore": "^6.12.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": "etherpad/plugin"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

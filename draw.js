@@ -1,58 +1,64 @@
-var eejs = require('ep_etherpad-lite/node/eejs/');
-var settings = require('ep_etherpad-lite/node/utils/Settings');
-var drawString = "";
+'use strict';
 
-exports.eejsBlock_editbarMenuLeft = function (hook_name, args, cb) {
-  args.content = args.content + eejs.require("ep_whiteboard/templates/editbarButtons.ejs");
+const eejs = require('ep_etherpad-lite/node/eejs/');
+const settings = require('ep_etherpad-lite/node/utils/Settings');
+
+exports.eejsBlock_editbarMenuLeft = (hookName, args, cb) => {
+  args.content += eejs.require('ep_whiteboard/templates/editbarButtons.ejs');
   return cb();
-}
+};
 
-exports.clientVars = function(hook, context, callback){
-  var draw = {};
+exports.clientVars = (hookName, context, callback) => {
+  const draw = {};
 
   try {
-    if (settings.ep_draw.host){
+    if (settings.ep_draw.host) {
       draw.host = settings.ep_draw.host;
-    }else{
-      console.warn("ep_whiteboard.host NOT SET in settings.json.  The requirement is the host of the etherdraw service IE draw.etherpad.org, copy/paste value to settings.json --  'ep_draw' { 'host': 'your.etherdrawhost.com'}");
-      draw.host = "draw.etherpad.org";
+    } else {
+      console.warn(
+          'ep_whiteboard.host NOT SET in settings.json.  The requirement is the host of the ' +
+          'etherdraw service IE draw.etherpad.org, copy/paste value to settings.json --  ' +
+          '"ep_draw" {"host": "your.etherdrawhost.com"}');
+      draw.host = 'draw.etherpad.org';
     }
-  } catch (e){
-    console.warn("ep_whiteboard.host NOT SET in settings.json.  The requirement is the host of the etherdraw service IE draw.etherpad.org, copy/paste value to settings.json --  'ep_draw' { 'host': 'your.etherdrawhost.com'}");
-    draw.host = "draw.etherpad.org";
+  } catch (err) {
+    console.warn(
+        'ep_whiteboard.host NOT SET in settings.json.  The requirement is the host of the ' +
+        'etherdraw service IE draw.etherpad.org, copy/paste value to settings.json --  ' +
+        '"ep_draw" {"host": "your.etherdrawhost.com"}');
+    draw.host = 'draw.etherpad.org';
   }
 
   try {
-    if(settings.ep_draw.onByDefault){
+    if (settings.ep_draw.onByDefault) {
       draw.onByDefault = true;
-    }else{
+    } else {
       draw.onByDefault = false;
     }
-  } catch (e){
+  } catch (e) {
     draw.onByDefault = false;
   }
 
   try {
-    if(settings.ep_draw.icon){
+    if (settings.ep_draw.icon) {
       draw.icon = settings.ep_draw.icon;
-    }else{
-      draw.icon = "../static/plugins/ep_whiteboard/static/img/icon.png";
+    } else {
+      draw.icon = '../static/plugins/ep_whiteboard/static/img/icon.png';
     }
-  } catch (e){
-    draw.icon = "../static/plugins/ep_whiteboard/static/img/icon.png";
+  } catch (e) {
+    draw.icon = '../static/plugins/ep_whiteboard/static/img/icon.png';
   }
 
   try {
-    if(settings.ep_draw.position){
+    if (settings.ep_draw.position) {
       draw.position = settings.ep_draw.position;
-    }else{
-      draw.position = "left";
+    } else {
+      draw.position = 'left';
     }
-  } catch (e){
-    draw.position = "right";
+  } catch (e) {
+    draw.position = 'right';
   }
 
 
-  return callback( { "ep_draw": draw } );
+  return callback({ep_draw: draw});
 };
-
