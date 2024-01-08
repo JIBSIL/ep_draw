@@ -1,14 +1,18 @@
-# Drawing and painting in Etherpad
+# ep_whiteboard
 
 Forked to use WBO. To use Jitsi Meet, use 
 
 https://github.com/lovasoa/whitebophir/wiki/WBO-Jitsi-integration
+
+# Drawing and painting in Etherpad
 
 In your `settings.json`, add:
 
 ## To change your host 
 
 Set up a host accessible from the user's browser.
+
+You may also use your WBO host for the "host" field!
 
 ```json
     "ep_draw": {
